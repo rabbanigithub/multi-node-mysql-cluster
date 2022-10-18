@@ -85,3 +85,36 @@ Add rules to allow local incoming connections from both data nodes
 sudo ufw allow from 10.11.12.42
 sudo ufw allow from 10.11.12.43
 ```
+## Step 2 — Installing and Configuring the Data Nodes
+_Execute step 2 into both data node `10.11.12.42` and `10.11.12.43`_
+
+Install dependency `libclass-methodmaker-perl` and the data note binary using `dpkg`.
+```
+sudo apt update
+sudo apt install libclass-methodmaker-perl -y
+wget https://cdn.mysql.com//Downloads/MySQL-Cluster-8.0/mysql-cluster-community-data-node_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-data-node_8.0.31-1ubuntu22.04_amd64.deb
+```
+Create data nodes configuration file
+```
+sudo vi /etc/my.cnf
+```
+Paste in the following code:
+```
+[mysql_cluster]
+# Options for NDB Cluster processes:
+ndb-connectstring=10.11.12.41  # location of cluster manager
+```
+Create data directory on the node
+```
+sudo mkdir -p /usr/local/mysql/data
+```
+start the data node
+```
+sudo ndbd
+```
+Add rules to allow incoming connections
+```
+ufw allow from 10.11.12.41
+ufw allow from 10.11.12.43
+```
