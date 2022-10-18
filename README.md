@@ -183,6 +183,8 @@ configure this MySQL server
 sudo vi /etc/mysql/my.cnf	
 ```
 
+## Step 4 — Verifying MySQL Cluster Installation
+
 Append the following configuration to it
 ```
 [mysqld]
@@ -197,4 +199,31 @@ Restart and enable the MySQL server
 ```
 sudo systemctl restart mysql
 sudo systemctl enable mysql
+```
+## Step 4 — Verifying MySQL Cluster Installation
+```
+mysql -u root -p
+mysql> SHOW ENGINE NDB STATUS \G
+```
+Open the Cluster management console, ndb_mgm using the command:
+```
+ndb_mgm
+-- NDB Cluster -- Management Client --
+
+ndb_mgm> SHOW
+Connected to Management Server at: 10.11.12.41:1186
+Cluster Configuration
+---------------------
+[ndbd(NDB)]     2 node(s)
+id=2    @10.11.12.42  (mysql-8.0.31 ndb-8.0.31, Nodegroup: 0)
+id=3    @10.11.12.43  (mysql-8.0.31 ndb-8.0.31, Nodegroup: 0, *)
+
+[ndb_mgmd(MGM)] 1 node(s)
+id=1    @10.11.12.41  (mysql-8.0.31 ndb-8.0.31)
+
+[mysqld(API)]   1 node(s)
+id=4    @10.11.12.41  (mysql-8.0.31 ndb-8.0.31)
+
+ndb_mgm> 2 STATUS
+Node 2: started (mysql-8.0.31 ndb-8.0.31)
 ```
