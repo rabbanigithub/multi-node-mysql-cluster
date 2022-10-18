@@ -91,7 +91,7 @@ _Execute step 2 into both data node `10.11.12.42` and `10.11.12.43`_
 Install dependency `libclass-methodmaker-perl` and the data note binary using `dpkg`.
 ```
 sudo apt update
-sudo apt install libclass-methodmaker-perl -y
+sudo apt install -y libclass-methodmaker-perl
 wget https://cdn.mysql.com//Downloads/MySQL-Cluster-8.0/mysql-cluster-community-data-node_8.0.31-1ubuntu22.04_amd64.deb
 sudo dpkg -i mysql-cluster-community-data-node_8.0.31-1ubuntu22.04_amd64.deb
 ```
