@@ -143,3 +143,10 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
+Execute to start `ndbd`
+```
+sudo systemctl daemon-reload
+sudo systemctl enable ndbd
+sudo systemctl start ndbd
+sudo systemctl status ndbd
+```
