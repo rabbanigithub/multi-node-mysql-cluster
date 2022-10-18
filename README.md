@@ -85,7 +85,7 @@ Add rules to allow local incoming connections from both data nodes
 sudo ufw allow from 10.11.12.42
 sudo ufw allow from 10.11.12.43
 ```
-## Step 2 — Installing and Configuring the Data Nodes
+## Step 2 - Installing and Configuring the Data Nodes
 _Execute step 2 into both data node `10.11.12.42` and `10.11.12.43`_
 
 Install dependency `libclass-methodmaker-perl` and the data note binary using `dpkg`.
@@ -151,7 +151,7 @@ sudo systemctl start ndbd
 sudo systemctl status ndbd
 ```
 
-## Step 3 — Configuring and Starting the MySQL Server and Client
+## Step 3 - Configuring and Starting the MySQL Server and Client
 _Execute step 3 into Cluster Manager server `10.11.12.41`. In a production environment running these daemons on different nodes is recommended._
 
 Download and extract `.tar` archive into `install` directory
@@ -183,8 +183,6 @@ configure this MySQL server
 sudo vi /etc/mysql/my.cnf	
 ```
 
-## Step 4 — Verifying MySQL Cluster Installation
-
 Append the following configuration to it
 ```
 [mysqld]
@@ -200,7 +198,7 @@ Restart and enable the MySQL server
 sudo systemctl restart mysql
 sudo systemctl enable mysql
 ```
-## Step 4 — Verifying MySQL Cluster Installation
+## Step 4 - Verifying MySQL Cluster Installation
 ```
 $ mysql -u root -p
 mysql> SHOW ENGINE NDB STATUS \G
