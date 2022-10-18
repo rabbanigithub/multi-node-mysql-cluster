@@ -202,12 +202,12 @@ sudo systemctl enable mysql
 ```
 ## Step 4 — Verifying MySQL Cluster Installation
 ```
-mysql -u root -p
+$ mysql -u root -p
 mysql> SHOW ENGINE NDB STATUS \G
 ```
 Open the Cluster management console, ndb_mgm using the command:
 ```
-ndb_mgm
+$ ndb_mgm
 -- NDB Cluster -- Management Client --
 
 ndb_mgm> SHOW
