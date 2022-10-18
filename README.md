@@ -115,6 +115,31 @@ sudo ndbd
 ```
 Add rules to allow incoming connections
 ```
-ufw allow from 10.11.12.41
-ufw allow from 10.11.12.43
+sudo ufw allow from 10.11.12.41
+sudo ufw allow from 10.11.12.43
+```
+Kill the running `ndbd` process to create service
+```
+sudo pkill -f ndbd
+```
+
+Edit systemd Unit
+```
+sudo vi /etc/systemd/system/ndb_mgmd.service
+```
+Paste in the following code:
+```
+[Unit]
+Description=MySQL NDB Data Node Daemon
+After=network.target auditd.service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/ndbd
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 ```
