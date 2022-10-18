@@ -166,7 +166,7 @@ sudo apt update
 sudo apt install -y libaio1 libmecab2
 ```
 
-Install the MySQL Cluster dependencies, bundled in the tar archive
+Install the MySQL Server and Cluster dependencies, bundled in the tar archive
 ```
 cd install
 sudo dpkg -i mysql-common_8.0.31-1ubuntu22.04_amd64.deb
@@ -177,4 +177,24 @@ sudo dpkg -i mysql-client_8.0.31-1ubuntu22.04_amd64.deb
 sudo dpkg -i mysql-cluster-community-server-core_8.0.31-1ubuntu22.04_amd64.deb
 sudo dpkg -i mysql-cluster-community-server_8.0.31-1ubuntu22.04_amd64.deb
 sudo dpkg -i mysql-server_8.0.31-1ubuntu22.04_amd64.deb
+```
+configure this MySQL server 
+```
+sudo vi /etc/mysql/my.cnf	
+```
+
+Append the following configuration to it
+```
+[mysqld]
+# Options for mysqld process:
+ndbcluster                      # run NDB storage engine
+
+[mysql_cluster]
+# Options for NDB Cluster processes:
+ndb-connectstring=10.11.12.41  # location of management server
+```
+Restart and enable the MySQL server
+```
+sudo systemctl restart mysql
+sudo systemctl enable mysql
 ```
