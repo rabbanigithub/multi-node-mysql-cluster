@@ -150,3 +150,31 @@ sudo systemctl enable ndbd
 sudo systemctl start ndbd
 sudo systemctl status ndbd
 ```
+
+## Step 3 — Configuring and Starting the MySQL Server and Client
+_Execute step 3 into Cluster Manager server `10.11.12.41`. In a production environment running these daemons on different nodes is recommended._
+
+Download and extract `.tar` archive into `install` directory
+```
+wget https://cdn.mysql.com//Downloads/MySQL-Cluster-8.0/mysql-cluster_8.0.31-1ubuntu22.04_amd64.deb-bundle.tar
+mkdir install
+tar -xvf mysql-cluster_8.0.31-1ubuntu22.04_amd64.deb-bundle.tar -C install/
+```
+Install dependencies `libaio1` `libmecab2`
+```
+sudo apt update
+sudo apt install -y libaio1 libmecab2
+```
+
+Install the MySQL Cluster dependencies, bundled in the tar archive
+```
+cd install
+sudo dpkg -i mysql-common_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client-plugins_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client-core_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-client_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-server-core_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-server_8.0.31-1ubuntu22.04_amd64.deb
+sudo dpkg -i mysql-server_8.0.31-1ubuntu22.04_amd64.deb
+```
